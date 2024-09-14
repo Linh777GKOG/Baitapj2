@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cipher Tool</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Cipher Tool</h1>
+
+      <!-- Chọn loại mã hóa -->
+      <label for="cipherType">Chọn loại mã:</label>
+      <select id="cipherType" onchange="updateKeyInputs()">
+        <option value="caesar">Caesar</option>
+        <option value="affine">Affine</option>
+        <option value="vigenere">Vigenere</option>
+      </select>
+
+      <!-- Ô nhập bản rõ -->
+      <label for="plaintext">Bản rõ:</label>
+      <textarea
+        id="plaintext"
+        placeholder="Nhập bản rõ hoặc tải lên tệp..."
+      ></textarea>
+      <input type="file" id="plaintextFile" accept=".txt" />
+      <button onclick="loadPlaintext()">Tải lên</button>
+
+      <!-- Ô hiện bản mã -->
+      <label for="ciphertext">Bản mã:</label>
+      <textarea
+        id="ciphertext"
+        placeholder="Nhập bản mã hoặc tải lên tệp..."
+      ></textarea>
+      <input type="file" id="ciphertextFile" accept=".txt" />
+      <button onclick="loadCiphertext()">Tải lên</button>
+
+      <!-- Chọn encode hoặc decode -->
+      <label for="operation">Chọn hành động:</label>
+      <select id="operation">
+        <option value="encode">Encode (Mã hóa)</option>
+        <option value="decode">Decode (Giải mã)</option>
+      </select>
+
+      <!-- Ô nhập khóa mã cho Caesar, Affine và Vigenere -->
+      <div id="caesarKey" class="key-inputs">
+        <label for="caesarShift">Khóa Caesar (Shift):</label>
+        <input type="number" id="caesarShift" min="0" max="255" value="3" />
+      </div>
+
+      <div id="affineKeys" class="key-inputs" style="display: none">
+        <label for="affineA">Khóa Affine A:</label>
+        <input type="number" id="affineA" min="1" max="255" value="3" />
+        <label for="affineB">Khóa Affine B:</label>
+        <input type="number" id="affineB" min="0" max="255" value="3" />
+      </div>
+
+      <div id="vigenereKey" class="key-inputs" style="display: none">
+        <label for="vigenere">Khóa Vigenere:</label>
+        <input type="text" id="vigenere" placeholder="Nhập khóa..." />
+      </div>
+
+      <!-- Nút thực hiện -->
+      <button onclick="processCipher()">Thực hiện</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
